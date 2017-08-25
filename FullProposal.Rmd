@@ -3,10 +3,10 @@ title: "| Ph.D. Research Proposal \n| Geographical Applications of modern statis
   learning algorithms\n"
 author: "Ron Sarafian"
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     number_sections: yes
+  html_document:
+    df_print: paged
 fontsize: 12pt
 ---
 
@@ -283,7 +283,7 @@ Clearly, the quality of the GLS estimator lies in the estimation of $\Sigma$. In
 In addition, we want to emphasize that GLS estimator is also the minimizers of the squared mahalanobis length of the residual vector $y-X\beta$. This is particulary important since we might want to choose an estimator that minimizes the *weighted loss function* which is described above as an option to measure model performance using the estimated $\Sigma$:
 
 $$ \hat{\beta}_{GLS} =\underset{\beta}{\arg\min} \bigl( (y-X\beta)^{-1} \hat{\Sigma}^{-1} (y-X\beta) \bigr). $$
-Note that GLS can be considered as an estimation method that de-correlate the scale of the OLS errors. This means that as long as we reasonably estimated $\Sigma$, strongly dependent observations, wich usually have highly correlated errors, will have less impact on the values of the estimators than independent observations.
+Note that GLS can be considered as an estimation method that de-correlate the scale of the *ordinary least squares* (OLS) errors. This means that as long as we reasonably estimated $\Sigma$, strongly dependent observations, wich usually have highly correlated errors, will have less impact on the values of the estimators than independent observations.
 
 
 ### The Variance-Covariance Matrix
@@ -292,14 +292,15 @@ Whether it's a mixed model, AR, or SEM, it is the covariance matrix that essenti
 
 Here we review several models specifications which may be applied. We focus on *parameterized* covariance matrices, where all the components of the covariance matrix are function of $q \in {1,...,\frac{N(N+1)}{2}}$ parameters, where $N$ is the number of error terms. We define the covariance model as $\Sigma(\theta)$, where $\theta$ reffers to the distinct unknown parameters that need to be estimated from the data. [Weiss, 2005][modelinglongitudinal] states that the covariance model $\Sigma(\theta)$ should be choosen so that the true covariance matrix is from the type defined be the model (i.e. AR, SEM, etc.), but parsimonious, meaning that $q$ is small as possible.
 
-We point that any parameterized covariance matrix $\Sigma(\theta)$ can be considered as a compromise between two possibilities: The first, is the variance-scalled unit matrix: $\sigma^2 I_N$, somtimes called *spherical error variance* matrix [Hayashi, 2000][econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter. The second, is the most general model, called the *unstructured covariance matrix* and specifies no patterns:
+We point that any parameterized covariance matrix $\Sigma(\theta)$ can be considered as a compromise between two possibilities: The first, is the variance-scalled identity matrix: $\sigma^2 I_N$, somtimes called *spherical error variance* matrix [Hayashi, 2000][econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter. The second, is the most general model, called the *unstructured covariance matrix* and specifies no patterns:
 
-$$\begin{bmatrix}
+$$\text{Var}(\varepsilon) = 
+    \begin{bmatrix}
         \sigma_1^2      & \sigma_{1,2}  & \dots     & \sigma_{1,n}  \\
         \sigma_{2,1}    & \sigma_2^2    &           &               \\
         \vdots          &               & \ddots    & \vdots        \\
         \sigma_{n,1}    &               & \dots     & \sigma_n^2
-                \end{bmatrix}.$$
+    \end{bmatrix}.$$
 
 Unfortunately, the use of unstructured covariance matrix is not feasible in most cases since it requires fitting $\frac{N(N+1)}{2}$ parameters, which most datasets do not support.
 
@@ -317,13 +318,14 @@ where, $\rho$ is referred as the *autocorrelation* parameter, and $\delta_{ij}$ 
 $$ \text{Corr}(\varepsilon_{ij},\varepsilon_{il}) = \rho^{|j-l|},$$
 We ignore here the spatial pattern and assume that the process is spatially constant. That is, at every spatial unit $i$ the $T \times T$ covariance matrix is:
 
-$$ \tau^2 \begin{bmatrix}
-        1         & \rho      & \rho^2    &       & \rho^{T-1}  \\
-        \rho      & 1         & \rho      & \dots & \rho^{T-2}  \\
-        \rho^2    & \rho      & 1         &       & \rho^{T-3}  \\
-                  & \vdots    &           & \ddots& \vdots      \\
-        \rho^{T-1}&\rho^{T-2} &\rho^{T-3} &  \dots& 1
-            \end{bmatrix},$$
+$$ \text{Var}(\varepsilon_{j}) =
+        \tau^2  \begin{bmatrix}
+            1         & \rho      & \rho^2    &       & \rho^{T-1}  \\
+            \rho      & 1         & \rho      & \dots & \rho^{T-2}  \\
+            \rho^2    & \rho      & 1         &       & \rho^{T-3}  \\
+                      & \vdots    &           & \ddots& \vdots      \\
+            \rho^{T-1}&\rho^{T-2} &\rho^{T-3} &  \dots& 1
+                \end{bmatrix},$$
 
 where $\tau^2 = \text{Var}(\varepsilon_{ij}) = \frac{\sigma_{\delta}^2}{1-\rho^2}$. Note that this covariance model requires the estimation of 2 parameters.
 
@@ -411,38 +413,40 @@ Moreover, in spatial context, $g()$ can be assumed isotropic or anisotropic.
 
 #### Estimation of the Mixed Model
 
-Back to the simple linear mixed effect model. A typical assumption is that:
+Back to the simple LME model. A typical assumption is that:
 
 $$ \varepsilon_i \sim \mathcal{N}(0,\sigma^2I) \qquad b_i \sim \mathcal{N}(0,\sigma^2D)$$
 
 and $I=I_{s_j}$.
 
-The multivariate normal distribution of $y_i$ can then be writen as:
+The multivariate normal distribution of $y_j$ can then be writen as:
 
-$$ y_i \sim \mathcal{N}(X_i\beta, \sigma^2(I+Z_iDZ_i')),$$
+$$ y_j \sim \mathcal{N}(X_j\beta, \sigma^2(I+Z_jDZ_j')),$$
 
 and the log likeliyhood function for the linear mixed model is given by:
 
-$$ l(\beta,\sigma^2, D) = 
-        -\frac{N_T}{2}\ln{2\pi} 
-        -\frac{1}{2} \{N_T \ln{\sigma^2} + 
-        \sum_{i=1}^N[\ln{|I+Z_iDZ_i'| \\
-                + \sigma^2(y_i-X_i\beta)'(I+Z_iDZ_i')^{-1}(y_i-X_i\beta)}]
-        \}$$
+$$l(\beta,\sigma^2, D) = 
+        -\frac{N}{2}\ln{2\pi} 
+        -\frac{1}{2} \biggl(
+            N \ln{\sigma^2} +
+            \sum_{j=1}^N \bigl(
+                \ln{|I+Z_jDZ_j'|} + \\
+                \sigma^2 (y_j-X_j\beta)'(I+Z_jDZ_j')^{-1}(y_j-X_j\beta) \bigl) 
+            \biggl)$$
 
 This log likelihood function involves matrix inverse and determinante which might be a difficult task if the matrix dimension is high. However, some dimension reduction formulation can be employed in order to make calculation easier [ref][]
 
 #### Estimation of the GLS
 
-GLS estimation is essentially applying OLS to the transformed data. To see this, consider $\Sigma$'s Cholesky's decomposition: $\Sigma = L \Lambda L'$ where $L$ is a unitriangular matrix and $\Lambda$ is a diagonal matrix. Easy to prove that:
+GLS estimation is essentially applying OLS to the transformed data. To see this, consider $\Sigma$'s Cholesky's decomposition: $\Sigma = L \Lambda L'$ where $L$ is a unitriangular matrix and $\Lambda$ is a diagonal matrix. Easy to see that:
 
 $$ \Sigma^{-1} = PP', $$
 where $P = L^{-1} \Lambda^{-\frac{1}{2}}$ and that $P \Sigma P' = I$.
 
 Note that mltiplying both sides of $(*)$ by $P$ yields:
 
-$$ (**) \qquad y^* = X^* \beta + \varepsilon^*, $$
-where, $\tilde{y} = Py$, $\tilde{X} = PX$ and $\tilde{\varepsilon} = P\varepsilon$. Note that $E(\tilde{\varepsilon}) = 0$ and $\text{Var}(\tilde{\varepsilon}) = E(P\varepsilon \varepsilon'P') = \sigma^2 P\Sigma P' = \sigma^2I$, Hence $\beta$ can be estimated using $(**)$ and the *ordinary least squares* (OLS):
+$$ (**) \qquad \tilde{y} = \tilde{X} \beta + \tilde{\varepsilon}, $$
+where, $\tilde{y} = Py$, $\tilde{X} = PX$ and $\tilde{\varepsilon} = P\varepsilon$. Also note that $E(\tilde{\varepsilon}) = 0$ and $\text{Var}(\tilde{\varepsilon}) = E(P\varepsilon \varepsilon'P') = \sigma^2 P\Sigma P' = \sigma^2I$, hence $\beta$ can be estimated using $(**)$ and the OLS:
 
 $$  \begin{aligned}
     \hat{\beta}_{GLS} &= (\tilde{X}'\tilde{X})^{-1}\tilde{X}'\tilde{y} \\
@@ -450,38 +454,35 @@ $$  \begin{aligned}
                       &= (X'\Sigma^{-1} X)^{-1} X'\Sigma^{-1}y
     \end{aligned} $$
 
-(X^*'X^*)^{-1} X^*'y^*
-
 Therefore .... 
 
 ### Regularization
 
+Reducing the variance of the predicted values can be done by *shrinking*, while sacrificing a little bit of bias. When the goal is to improve prediction accuracy this should be considered. Shrinkage methods are continuous selection models (not limited to discrete variable selection) that impose a penalty on the regression coefficients. The most familiar are *ridge regression*, the *least absolute shrinkage and selection operator* (Lasso), and the *elastic net*, (see [Hastie et. al, 2009][ESL ch. 3.4] for an enlightening review). However, these methods are mostly suitable for data with independent observations, and are not straightforward in a spatio-temporal datasets.
+
+
 #### Regularization in the Mixed Model
 
-Pen.LME: Howard D Bondell, Arun Krishna, and Sujit K Ghosh. Joint variable selection for fixed and random eects in linear mixed-eects models. Biometrics, 66(4):1069-1077, 2010.
+Altought regularization in regression models have received considerable attention over the past years, literature on regularized LME models is somewhat scarce. The challenge in regularization of mixed models is to properly select random effects together with the fixed effects. This challenge stems from the fact that as long as the random effects are not determined its covariance matrix is unknown. One option is to perform selection in separate stages, but it may lead to different regularization solutions depending on the order of the stages. 
 
-GLMMLASSO: Jurg Schelldorfer, Peter Buhlmann, Sara van de Geer. Estimation for high-dimensional linear mixed-eects models using L1- penalization. Scandinavian Journal of Statistics, 38(2):197-214, 2011
+Recently, several procedures have been proposed to identify both the random and fixed effects. [Bondell et. al., 2010][Joint Variable Selection] proposed a simultaneous selection of the fixed and random effects in an LME model using a modified Cholesky decomposition. Their method is based on a penalized joint log-likelihood with an adaptive penalty (*adaptive Lasso*). [Fan and Li, 2012][var sele in LME] proposed to use a proxy matrix in the penalized profile likelihood to overcome the difficulty of unknown covariance matrix of the random effects. One drawback of these kind of methodsis is that they usually involve complex numerical optimization, therefore are computational intensive in relation to classical regularizations methods
 
 #### Regularization in GLS
 
-As described, **GLS has the effect of whitening the data**////... easy to regularized
+As described, in GLS estimaton the OLS method is implemented on the whitening transformation of the data. Therefore, its regularization is as easy as regularization of the OLS model:
 
-In the standard least squares estimation with regularization, $\hat{\beta}_{LS}$ is the minimizer of: 
+$$  \begin{aligned}
+    \hat{\beta}_{RGLS}  &=  \underset{\beta} {\arg\min} \bigl\{ (y-X\beta)' 
+                            \hat{\Sigma}^{-1} (y-X\beta) + \lambda g(\beta) \bigl\} \\
+                        &=  \underset{\beta} {\arg\min} \bigl\{ (\tilde{y} - \tilde{X} \beta)' 
+                            (\tilde{y} - \tilde{X} \beta) + \lambda g(\beta) \bigl\}
+    \end{aligned} $$
 
-$$ (y-X\beta)'(y-X\beta)+\lambda g(\beta) $$ 
+where $g(\beta)$ is some penalization on model complexity. For instance by setting: $g(\beta) = \sum_{i=k}^p \beta^2_k$ we get the ridge regression estimator:
 
-where $g(\beta)$ is some penalization on model complexity.
+$$\hat{\beta}_{RGLS} = \beta_{ridge} = (\tilde{X}' \tilde{X}+\lambda I)^{-1} \tilde{X}'\tilde{y}$$
 
-Assume $V^{-1}$ is nkown and the Cholesky decomposition is $V^{-1} = LL'$
-
-Then regularized GLS (RGLS) estimates with can have the form:
-
-$$ \hat{\beta}_{RGLS} =\underset{\beta}{\arg\min} \{ (y-X\beta)' V^{-1} (y-X\beta) + \lambda g(\beta) \} $$
-
-
-$$ = \underset{\beta}{\arg\min}(\textbf{y} - \textbf{X} \beta)' (\textbf{y} - \textbf{X} \beta) + \lambda g(\beta) \} $$
-where $\textbf{y} = Ly$ and $\textbf{X} = LX$
-
+ Note that $\beta_{RGLS}$ does not involve numeric optimization and enjoys a closed form solution.
 
 ## Example: Validation and Estimation in Epidemiological Perspective
 
@@ -504,11 +505,14 @@ Although both formulas superficially require large matrices to be inverted, the 
 ### Parallel Computing
 
 
+
 # Preliminary Results
 
+\newpage
 
 # Appendix
 
+\newpage
 
 # References
 
