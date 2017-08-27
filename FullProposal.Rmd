@@ -61,13 +61,13 @@ We hope that this research will greatly contribute to the field of environmental
 
 # Introduction
 
-How does air quality affect people health? A quantitative answer for this question is of interest for policy makers, especially regarding to the allocation of pollutants. To provide a general answer, epidemiologists usually employ observational studies, in which the relationship between air pollution expusure level and health indices is being investigated. In many cases the experimental units are spatio-temporal entities, each with its own measurement of pollution concentration. The fine Particular matter (PM) abundance is one of the common indicators for pollution levels [q][1]. However, PM mass concentrations are measured at ground monitoring stations, therefore highly limited in terms of spatial coverage. In order to provid PM assesments in geographical areas where no mesurments are available some statistical methodology is needed.
+How does air quality affect people health? A quantitative answer for this question is of interest for policy makers, especially regarding to the allocation of pollutants. To provide a general answer, epidemiologists usually employ observational studies, in which the relationship between air pollution expusure level and health indices is being investigated. In many cases the experimental units are spatio-temporal entities, each with its own measurement of pollution concentration. The fine *particular matter* (PM) abundance is one of the common indicators for pollution levels [q][1]. However, PM mass concentrations are measured at ground monitoring stations, therefore highly limited in terms of spatial coverage. In order to provid PM assesments in geographical areas where no mesurments are available some statistical methodology is needed.
 
-PM levels show high spatio-temporal variation [Pelletier et al., 2007][2]; therfore, geostatistical interpolation methods in which spatial PM levels are modeled as opposed to some smoothness minimizer polynomial spline may introduces PM exposure error ([Zeger et al., 2000][3]). Over the years, methods which utilize additional data to minimize the exposure error have been developed. The Land-use Regression (LUR) approach take advantage of traffic, topography, and other geographic variables to train models to predict pollution levels at any location ([q][14],[q][15]). The LUR methods provided more accurate exposure assessments at unmonitored locations; However they were significantly limited mostely since the included covariates are generally not time varying, therefore were better suited for long-term exposure assessments. Along with the improvement in the epidemiologists' analysis tools the demand for spatio-temporally resolved datasets of PM concentrations was rising and new approaches were needed.
+PM levels show high spatio-temporal variation [Pelletier et al., 2007][2]; therfore, geostatistical interpolation methods in which spatial PM levels are modeled as opposed to some smoothness minimizer polynomial spline may introduces PM exposure error ([Zeger et al., 2000][3]). Over the years, methods which utilize additional data to minimize the exposure error have been developed. The *land-use regression* (LUR) approach takes advantage of traffic, topography, and other geographic variables to train models to predict pollution levels at any location ([q][14],[q][15]). The LUR methods provided more accurate exposure assessments at unmonitored locations; However they were significantly limited mostely since the included covariates are generally not time varying, therefore were better suited for long-term exposure assessments. Along with the improvement in the epidemiologists' analysis tools the demand for spatio-temporally resolved datasets of PM concentrations was rising and new approaches were needed.
 
-The increasing in availability of satellite data has enabled environmental scientists to harness remote sensing technologies to PM concentration assesments. Satellite-based aerosol optical depth (AOD) is the measure of particles in air (e.g., haze, smoke, dust) distributed within a column of air from the earth's surface to the top of the atmosphere. AOD retrievals were found to be associated with ground PM measurments in different geographical areas. The use of AOD as a covariate in studies of PM concentration estimation has increased substantially over the past few years (e.g., [Kloog et al., 2014][4],[Chudnovsky et al., 2014][5],[ref][]).
+The increasing in availability of satellite data has enabled environmental scientists to harness remote sensing technologies to PM concentration assesments. Satellite-based *aerosol optical depth* (AOD) is the measure of particles in air (e.g., haze, smoke, dust) distributed within a column of air from the earth's surface to the top of the atmosphere. AOD retrievals were found to be associated with ground PM measurments in different geographical areas. The use of AOD as a covariate in studies of PM concentration estimation has increased substantially over the past few years (e.g., [Kloog et al., 2014][4],[Chudnovsky et al., 2014][5],[ref][]).
 
-In recent studies, ground measured PM data were integrated with rerpeated AOD measurments along with other spatio-temporal covariates in order to build a model that can be used to assess PM exposure in locations where no measurement is performed ([ref][]; [ref][]). The clustered structure of the data requires a model that is able to account for several sources of variability (mostly, space and time), and a common practice is the *mixed models* statistical framework (see for instance [ref][PM,AOD,MixedModel]; [ref][]). The AOD based models have shown substantially well performances in predicting exposure levels, and their great advantage is in providing exposure assessments within short intervals ([q][good performance]; [q][short intervals])
+In recent studies, ground measured PM data were integrated with rerpeated AOD measurments along with other spatio-temporal covariates in order to build a model that can be used to assess PM exposure in locations where no measurement is performed ([ref][]; [ref][]). The clustered structure of the data requires a model that is able to account for several sources of variability (mostly, space and time), and a common practice is the *mixed models* statistical framework (see for instance [itai1][PM,AOD,MixedModel]; [itai2][]). The AOD based models have shown substantially well performances in predicting exposure levels, and their great advantage is in providing exposure assessments within short intervals ([q][good performance]; [q][short intervals])
 
 The generated PM predictions allow to examine the effect of air pollution on health and disease conditions, not only near monitoring stations, but also in remote, usually less populated areas. Studies that have used generated PM predictions which were obtained using the described above procedure found statistically significant correlation between PM and varaity of health related mesurments such as adverse birth outcomes ([Kloog et al., 2012][6]); natural-cause mortality [Wang et al., 2016][7]; Acute Myocardial Infarction ([Madrigano et al., 2013][11]) and more.
 
@@ -133,7 +133,7 @@ and the *weighted quadratic loss function*:
 
 $$\mathcal{L}_{_W} = \big(y-f(x)\big)' \textbf{W} \big(y-f(x)\big).$$
 
-One option is to set the weights matrix $\textbf{W}$ as the inverse of the data variance-covariane matrix $\Sigma_n^{-1}$. In this case, $\mathcal{L}_{_W}$ can be thought as the squared Mahalanobis length of the residuals vector.
+One option is to set the weights matrix $\textbf{W}$ as the inverse of the data variance-covariane matrix $\Sigma_n^{-1}$. In this case, $\mathcal{L}_{_W}$ can be thought as the squared *mahalanobis length* of the residuals vector.
 
 Assume that $f_{_{UW}}$ and $f_{_{W}}$ both minimize $\mathcal{L}_{_{UW}}$ and $\mathcal{L}_{_{W}}$ over $\mathcal{F}$ respectively.
 
@@ -143,15 +143,19 @@ Conversely, $f_{_{W}}$ recognizes that the numerous PM observations in the city 
 
 Easy to see that under $\mathcal{L}_{_{UW}}$ the model tend to be more acurate in the areas where there are many similar observations (which will usually be more populated places) in a price of a higher error in areas with fewer observations (usually unpopulated remote areas). Also, $\mathcal{L}_{_W}$ is forcing the model to utilize the genuine value that data provide (at least in a geographical sense), hence, predictions accuracy for uncorrelated areas would increase.
 
-Epidemiologists who estimate the efect of air pollution on some health indices
-**would prefer high varianced PM measurments. ** and **to be aqurate in the village**
+==================================================
 
-about measuring prediction errors with the loss - too optimistic (w.r.t epidemiological results)
-and, what is the different between estimation and validation in loss function?
+TODO:
+
+- Epidemiologists perspective: prefer high varianced PM measurments, to be aqurate in the village
+- measuring prediction errors with the loss - too optimistic (w.r.t epidemiological results)
+- loss function - difference between estimation and validation
+
+==================================================
 
 Weighted quadratic loss function requaires a prespecified weights matrix $W$. A natural option is to estimate in some way the aforementioned variance-covariance inverse matrix $\Sigma_n^{-1}$. The estimation of $\Sigma_n^{-1}$ is substantial for our research and has great influence not only on model performance evaluation but also on model estimation stage. In section 5.2.3 we go into more details and discuss several estimation approaches.
 
-```{r, echo = F}
+```{r, echo = F, fig.width = 6, fig.height = 4}
 h <- c(rnorm(99,10,1),rnorm(1,5,1))
 
 pm1 <- c(rep(2,99),1)
@@ -177,22 +181,27 @@ Generally, the main CV approach used in the literature to overcome time series d
 
 Apperently CV approaches appropriate for spatialy dependent data recive less attention in the statistical literature. However, some progress has been made in recent years, mainly in the fields of geographical and environmental studies. 
 
-[Telford and Briks, 2009]][] suggested that the scheme of h-block can be adopted for the spatial case by omitting obserations within a radius of $h$ of the test set (also referred as spatial-LOO). They proposed using the range of a variogram model to appropriately define $h$. [Trachsel and Telford, 2015][] proposed further methods for determining $h$ e.g. by finding the distance at which the root mean squared error (RMSE) of h-block CV and the RMSE of an independent validation set are similar. [Rest et. al., 2014][] considered a variable selection model under conditions of spatial autocorrelated data. They compared a spatial-LOO version with a classical model selection with Akaike information criterion (AIC) while accounting for residual spatial autocorrelation (RSA). Using simulations they found that spatial-LOO is particulary more useful when the range of RSA was small.
+[Telford and Briks, 2009]][] suggested that the scheme of h-block can be adopted for the spatial case by omitting obserations within a radius of $h$ of the test set (also referred as spatial-LOO). They proposed using the range of a variogram model to appropriately define $h$. [Trachsel and Telford, 2015][] proposed further methods for determining $h$ e.g. by finding the distance at which the root mean squared error (RMSE) of h-block CV and the RMSE of an independent validation set are similar. [Rest et. al., 2014][] considered a variable selection model under conditions of spatial autocorrelated data. They compared a spatial-LOO version with a classical model selection with *Akaike information criterion* (AIC) while accounting for *residual spatial autocorrelation* (RSA). Using simulations they found that spatial-LOO is particulary more useful when the range of RSA was small.
 
 [Roberts et. al., 2016][] examine the utility of blocking procedures for CV in a number of dependent settings, and propose several blocking schemes. They also discuss the possibility of extrapolation (i.e. when blocking hold out entire portion of the predictor space) and state that when extrapolation is the modelling goal deliberate blocking in predictor space may should be considered.
 
 Some contribution to blocking approaches comes also from the bootstrap practice. In fact, the procedure of resampling in bootstrap and in CV methods are the same, excepting of with or without replacing. [Davison and Hinkley, 1997][bootstrap methods] review some of the schemes for block resampling proposed for complex dependence such as time series and point processes. Examples are: *Post-blackening*, *Blocks-of-blocks*, and *Stationary bootstrap*. They also provide a detailed instruction for the choice of block length In an iterative fashion under suitable assumptions.
 
-*stationarity*
-However, these CV approaches are all suitable only for cases where observation form a general stationary sequence, hence without additional adjustmant, is not applicable for process  whose joint probability distribution change when shifted in time or in spatial domain. 
+==================================================
 
-spatio-temporal structure. to the best we know... Yet, more advancement is expected with the rapid development of large spatial databases along with the need for proper statistical tools.
+TODO:
 
+- stationarity - these CV approaches are all suitable only for cases where observation form a general stationary sequence, hence without additional adjustmant, is not applicable for process whose joint probability distribution change when shifted in time or in spatial domain.
+evidences for stationary process: 
+evidences for unstationary process: increase in number of dust storms: [Krasnov et al, 2016][]; 
 still not covered:
-
-- anisotropic analysis, highly unbalanced spatial data
+- anisotropic analysis
+- highly unbalanced data
 - not stationary data 
 - Anti-Learning Phenomenon
+
+==================================================
+
 
 ## Statistical Model
 
@@ -200,7 +209,7 @@ Although dependency among observations is a common phenomenon in observational s
 
 In the last decades there has been an explosion of research in dependence data modeling. Logitudial modeling is perhaps the most familiar one. It mostly focuses on the dependence among obsevations over time such as time series, and is commonly used in many fields such as biology, economics and more. A number of approaches to modeling longitudinal data have been proposed in the statistical literature. A very common approach is to use a parameterized covariance model. parameterized models assume an underlying structure of stationary stochastic process, which can be described 'using a with small number of parameters. such as structures are *autoregressive* (AR), or *moving average* (MA) models. For a comprehensive review see [Weiss, 2006][book].
 
-Spatial statistics deals with more complex dependency structure where data represent observations that are associated with points or regions. According to the first law of geograpy ([Tobler (1970)][first_law]), samples in geographical space tend to be more similar, resulting in spatial autocorrelation (SAC). Modeling SAC is not a simple task, and is definitely not a straightforward extension of time series into two dimensions. 
+Spatial statistics deals with more complex dependency structure where data represent observations that are associated with points or regions. According to the first law of geograpy ([Tobler (1970)][first_law]), samples in geographical space tend to be more similar, resulting in *spatial autocorrelation* (SAC). Modeling SAC is not a simple task, and is definitely not a straightforward extension of time series into two dimensions. 
 [Cressie, 1993][book] introdue the *conditionally specified gaussian* model that use the spatial locations of samples to model the probability distribution of the errors under gaussian assumption. The spatial econometrics literature uses the so-called spatial weights matrix $W$ to denote variables lagged in space. $W$ describe the spatial arrangement of the geographical units and can be assumed or estimated. in his seminal book, [Anselin, 1988][book] present several estimation methods for linear regression model with spatially dependent error terms from an econometric perspective. [LeSage and Pace, 2009][book] called this model *spatial error model* (SEM) and reffered it as a special case of the more general *spatial Durbin model* (SDM). Anothe method that have recently shown to be effective is  *Bayesian hierarchical* modeling approaches (see [Banerjee et. al., 2014][book]). These models handle complex relationships such as multi-level data by estimating the parameters of the posterior distribution using the bayesian methods. 
 
 Spatio-temporal data enable the researcher to take advantage of time-sapce interactions, thus to provide more accurate predictions in a higher resolution. However, the analysis of spatio-temporal data might be quite complicated since both spatial and temporal dependencies need to be accounted. It is an emerging reseach field and modeling approaches are still developing. In the environmental exposure assessment studies, *Mixed models* ([Henderson et. al., 1959][The Estimation of Environmental]; [Robinson, 1991][that BLUP is...]) are probably the most prevalent statistical framework for spatio-temporal data, particularly those analysing satellite based data. Mixed models cope with clustered data by distinguishing between two sources of variation: between clusters, and within clusters. Another suitable approach for modeling complex dependency structures is the *generalized least squares* (GLS). The GLS is a linear regression model which uses the estimatied variance-covariance matrix of the error terms to efficiently estimate model's parameters in the presence of dependency. Since it is a linear model, the GLS has some nice properties as we will discuss later. Altought GLS based models have been known in the statistical literature for decades ([Besag, 1974][gls1], [Cliff and Ord, 1981][gls2]), their application in geographical and environmental studies has been very limited so far.
@@ -213,10 +222,15 @@ Since it is the errors covariance matrix that practically determine the model, w
 
 Moreover, in choosing the statistical model we should also consider its goal. The purpose of the model in our case is predication rather than inference. For this reason, we might cosider reducing prediction error in cost of biassed model, using regularization. Suitable regularization approaches for regressions are Shrinkage methods such as *Ridge regression* or *Lasso*. It should be noted that while such procedures are relatively easy to adapt for linear models, It might be more complex for mixed effect models. [ref][]
 
-Some subjects that we might consider but not covered here are:
+==================================================
+
+TODO ??
 
 - Bayesian hierarchical modeling
 - modifiable areal unit problem (MAUP) [Cressie, 1996][Change of support and the modifiable areal unit problem]
+
+==================================================
+
 
 ### Mixed Models
 
@@ -292,7 +306,14 @@ Whether it's a mixed model, AR, or SEM, it is the covariance matrix that essenti
 
 Here we review several models specifications which may be applied. We focus on *parameterized* covariance matrices, where all the components of the covariance matrix are function of $q \in {1,...,\frac{N(N+1)}{2}}$ parameters, where $N$ is the number of error terms. We define the covariance model as $\Sigma(\theta)$, where $\theta$ reffers to the distinct unknown parameters that need to be estimated from the data. [Weiss, 2005][modelinglongitudinal] states that the covariance model $\Sigma(\theta)$ should be choosen so that the true covariance matrix is from the type defined be the model (i.e. AR, SEM, etc.), but parsimonious, meaning that $q$ is small as possible.
 
-We point that any parameterized covariance matrix $\Sigma(\theta)$ can be considered as a compromise between two possibilities: The first, is the variance-scalled identity matrix: $\sigma^2 I_N$, somtimes called *spherical error variance* matrix [Hayashi, 2000][econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter. The second, is the most general model, called the *unstructured covariance matrix* and specifies no patterns:
+We point that any parameterized covariance matrix $\Sigma(\theta)$ can be considered as a compromise between two possibilities: The first, is the variance-scalled identity matrix: 
+
+$$\text{Var}(\varepsilon) = \sigma^2 \begin{bmatrix} 1      & 0     & \dots & 0 \\
+                                                     0      & 1     &       &   \\
+                                                     \vdots &       & \ddots&   \\
+                                                     0      &       & \dots & 1 \end{bmatrix},$$
+
+somtimes called *spherical error variance* matrix [Hayashi, 2000][econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter. The second, is the most general model, called the *unstructured covariance matrix* and specifies no patterns:
 
 $$\text{Var}(\varepsilon) = 
     \begin{bmatrix}
@@ -308,7 +329,7 @@ We would like to examine covariance models at an increasing complexity. Firstly,
 
 #### Time perspective: *Autoregressive* Errors
 
-When PM measurments are regressed agisnt environmental covariates, both the response and predictors vary over time $j$. Thus a case to suspect is *autocorrelation between errors*. To illustrate the errors covariance matrix that describe process like this we consider the $AR(1)$ model of the errors, in which the error term depends on its (1) previous values. This model can be easily extanded to $AR(p)$.
+When PM measurments are regressed agisnt environmental covariates, both the response and predictors vary over time $j$. Thus a case to suspect is *autocorrelation between errors*. To illustrate the errors covariance matrix that describe process like this we may consider the $AR(1)$ model of the errors, in which the error term depends on its (1) previous values. This model can be easily extanded to $AR(p)$.
 
 Consider the model in $(*)$, only with the extension:
 
@@ -327,86 +348,76 @@ $$ \text{Var}(\varepsilon_{j}) =
             \rho^{T-1}&\rho^{T-2} &\rho^{T-3} &  \dots& 1
                 \end{bmatrix},$$
 
-where $\tau^2 = \text{Var}(\varepsilon_{ij}) = \frac{\sigma_{\delta}^2}{1-\rho^2}$. Note that this covariance model requires the estimation of 2 parameters.
+where $\tau^2 = \text{Var}(\varepsilon_{ij}) = \frac{\sigma_{\delta}^2}{1-\rho^2}$. Note that this $AR(1)$ covariance model requires the estimation of 2 parameters, and in general $p+1$ paramrters are required to specify an $AR(p)$ covariance model. 
 
 
 #### Spatial perspective: 
 
-Econometric approach:
-model the errors generating process through the weight matrix approach
+There are two main approaches discussed in the literature regarding the covariance model in SAC data, each implies a different assumption about the spatial pattern. The *weight matrix* ($W$) approach is particularly common in econometric studies suggests to model the errors generating process (first introduced by [Ord, 1975][estimatio methods...]. This can be described as follows: Consider the model in $(*)$, but now with different assumption regarding to $\varepsilon$: 
 
-Consider the model in $(*)$, now with different assumption regarding to $\varepsilon$. Remaining in matrix notation:
+$$\varepsilon_i =  \lambda \sum_{k=1}^S w_{ik}\varepsilon_k + \nu_i$$
 
-$$\varepsilon =  \lambda \tilde{\varepsilon} + \omega$$
+where $w_{ik}$ is the $i-k$th element in the weight matrix $W$ and $\sum_{k=1}^S w_{ik}\varepsilon_k$ is called the *spatial lag*, since it represent a linear combination of values of the error terms $\varepsilon$ constructed from regions (spatial units) that neighbor $\varepsilon_i$. In matrix notation the $S \times 1$ vector $\varepsilon$ can be represented as:
 
-where $\tilde{\varepsilon} = W \varepsilon$
+$$ \varepsilon = (I-\lambda W)^{-1}\nu.$$
+Note that $E(\varepsilon) = 0$ and its variance is:
 
-$$ \varepsilon = (I-\lambda W)^{-1}\omega$$
-$$ \text{Var}(\varepsilon) = \sigma_{\omega}^2(I-\lambda W)^{-1}(I-\lambda W')^{-1}$$
+$$ \text{Var}(\varepsilon) = \sigma_{\nu}^2(I-\lambda W)^{-1}(I-\lambda W')^{-1}$$
 
-Some alternatives for choosing the components $w_{uv}$ of $W$:
+Many alternatives for choosing the components $w_{ik}$ of $W$ exist, the most common in the literature are:
 
-*k-nearest neighbors*: $$ w_{uv} = \begin{cases} 1 & ,u \in N_k(v) \\ 0 & , otherwise \end{cases} $$
+*k-nearest neighbors*: $$ w_{ik} = \begin{cases} 1 & ,u \in N_k(v) \\ 0 & , otherwise \end{cases} $$
 
-*Radial Distance*: $$ w_{uv} = \begin{cases} 1 & , 0 \leq d_{uv} \leq L \\ 0 & , otherwise \end{cases} $$
+*Radial Distance*: $$ w_{ik} = \begin{cases} 1 & , 0 \leq d_{ik} \leq L \\ 0 & , otherwise \end{cases} $$
 
-*Power Distance*: $$ w_{uv} = \frac{1}{d_{uv}^{\alpha} } $$
+*Power Distance*: $$ w_{ik} = \frac{1}{d_{ik}^{\alpha} } $$
 
+how to estimate the parametes
 
-Direct Specification of the correlation matrix components $K$: a functional form for the covariance structure is assumed. parameters might be estimated jointly with regression parameters using ML.  
+Anoter approach to model the covariance is to specifiy directly the correlation matrix components $K$, assuming some functional form.
 
 Some alternatives:
 
 - *Negative exponential*:  
 
-$$ \sigma_{ik} = b_1 \exp{- \frac{d^\alpha_{ik}}{b_2}} $$ 
+$$ \sigma_{ik} = b_1 \exp(- \frac{d^\alpha_{ik}}{b_2}) $$ 
 
-when $\alpha = 2$ it is a gaussian
-
-- *Gaussian*: 
+when $\alpha = 2$ it is a *gaussian*
 
 after constructingthe correlation matrix $K$ takes $\hat{\Sigma} = \sigma^2_{\varepsilon}K$
 (how to get $\sigma^2_\varepsilon$ ?)
 
+==================================================
 
-#### *FGLS*??
+**TODO:**
 
-$\Sigma(\theta)$ can be consistently estimate using the *feasible generalized least squares* (FGLS) estimator. The FGLS is a common method mainly in the econometric field, in which great emphasis is put on data structure. FGLS, modeling proceeds in two stages: (1) the model is estimated ignoring the dependence structure of the data (e.g. with OLS), and the residuals are then used to construct the error covariance matrix estimator $\hat{\Sigma(\theta)}$. (2) The GLS estimation is performed using the first stage estimated $\hat{\Sigma(\theta)}$. 
+- Variogram, covariogram and correlogram
 
-#### Spatio-temporal perspective: *something*
 
-**toy model**
+#### Spatio-temporal perspective:
 
-Consider the toy 2-time-units $\times$ 2-spatial-units symmetric covariance matrix of the residuals $\eta$ from the model $y = X\beta + \eta$
+Kronecker product of a spatial and a temporal matrix
 
-$$V_{2\times2} = V_{2\times2}' =
-        \begin{bmatrix}
-            v_{1,1} &  
-                    \rho_{1,\{1,2\}} &
-                    \gamma_{\{1,1\},\{2,1\}} & 
-                    \gamma_{\{1,1\},\{2,2\}} \\
-          & v_{1,2} & \gamma_{\{1,2\},\{2,1\}} & \gamma_{\{1,2\},\{2,2\}} \\
-          & & v_{2,1} & \rho_{2,\{1,2\}}\\
-          & & & v_{2,2}
-                \end{bmatrix}$$
+[Huizenga et al, 2002][Spatiotemporal EEG/MEG Source Analysis Based on a Parametric Noise Covariance Model]
 
-More generally, for time-unit $j$ and spatial-unit $i$, $j=1,...,T$, $i=1,...,N$:
+[Naik and Rao, 2001][Analysis of multivariate repeated measures data with a Kronecker product structured covariance matrix] 
 
-* $v_{i,j}$ correspond with the variance of the residuals in spatial-unit $i$ in time-unit $j$.
-* $\rho_{i,\{j,j'\}}$ correspond with the correlation between the residuals in in time-units $j$ and $j'$ in the same spatial-unit $i$, i.e. *temporal autocorrelation*
-* $\gamma_{\{i,j\},\{i',j\}}$ correspond with the correlation between the residuals in in spatial-points $i$ and $i'$ at the same time-unit $j$, i.e. *spatial autocorrelation*
-* $\gamma_{\{i,j\},\{i',j'\}}$ correspond with the correlation between the residuals in in spatial-points $i$ and $i'$ at time-units $j$ and $j'$ respectively, i.e. *spatio-temporal correlation*
+[Mardia and Goodall, 1993][Spatial–temporal analysis of multivariate environmental monitoring data]
 
-Some simplifications are possible, for instance: 
-$\rho_{i,\{j,j+t\}} \to 0$ when $g_t(t)>c_t$,
-$\gamma_{\{i,j\},\{i+d,j\}} \to 0$ when $g_d(d) > c_d$ and,
-$\gamma_{\{i,j\},\{i+d,j+t\}} \to 0$ when $g_{td}(t,d) > c_{td}$, 
-where $g_t$, $g_d$, $g_{td}$ are functions describing the correlations decay, and $c_d$ ,$c_t$, $c_{td}$ can be assumed or estimated.
+[Katanoda et al, 2001][A Spatio-temporal Regression Model for the Analysis of Functional MRI Data]
 
-Moreover, in spatial context, $g()$ can be assumed isotropic or anisotropic.
-[Cressie and Chan (1989)][7] chose $g()$ based on the estimated variogram of the obser vations
+- isotropy vs. unisotropy: follow [Ripley, 2005][spatial statistics]
 
-**isotropy vs. unisotropy**
+**Estimation of the covariance model**
+
+Parameters can be estimated jointly with regression parameters using ML - **discuss it** ([Elhorst, 2012][SE]; [Banerjee et. al., 2014][book])
+
+Another estimation approcah is to employ some sort of *feasible generalized least squares* (FGLS): The FGLS is a common method mainly in the econometric field, in which great emphasis is put on data structure. The FGLS modeling proceeds in two stages: (1) the model is estimated ignoring the dependence structure of the data (e.g. with OLS), and the residuals are then used to construct the error covariance matrix estimator $\hat{\Sigma(\theta)}$. (2) The GLS estimation is performed using the first stage estimated $\hat{\Sigma(\theta)}$. 
+
+- FGLS adjusted for spatio-temporal dependence - several stages... **discuss, some ref.**
+- discussion: covariance matrix: simultaneous or preset estimation
+
+==================================================
 
 
 ### Estimation Perspective
@@ -434,7 +445,7 @@ $$l(\beta,\sigma^2, D) =
                 \sigma^2 (y_j-X_j\beta)'(I+Z_jDZ_j')^{-1}(y_j-X_j\beta) \bigl) 
             \biggl)$$
 
-This log likelihood function involves matrix inverse and determinante which might be a difficult task if the matrix dimension is high. However, some dimension reduction formulation can be employed in order to make calculation easier [ref][]
+This log likelihood function involves matrix inverse and determinante which might be a difficult task if the matrix dimension is high. However, some dimension reduction formulation can be employed in order to make calculation easier [Demidenko, 2005][mixed models book]
 
 #### Estimation of the GLS
 
@@ -456,10 +467,18 @@ $$  \begin{aligned}
 
 Therefore .... 
 
+==================================================
+
+**TODO:**
+
+- [Pace, 1997][] has suggested the use of sparse matrix techniques to facilitate the use of large samples (computational burden).
+
+==================================================
+
+
 ### Regularization
 
 Reducing the variance of the predicted values can be done by *shrinking*, while sacrificing a little bit of bias. When the goal is to improve prediction accuracy this should be considered. Shrinkage methods are continuous selection models (not limited to discrete variable selection) that impose a penalty on the regression coefficients. The most familiar are *ridge regression*, the *least absolute shrinkage and selection operator* (Lasso), and the *elastic net*, (see [Hastie et. al, 2009][ESL ch. 3.4] for an enlightening review). However, these methods are mostly suitable for data with independent observations, and are not straightforward in a spatio-temporal datasets.
-
 
 #### Regularization in the Mixed Model
 
@@ -484,25 +503,33 @@ $$\hat{\beta}_{RGLS} = \beta_{ridge} = (\tilde{X}' \tilde{X}+\lambda I)^{-1} \ti
 
  Note that $\beta_{RGLS}$ does not involve numeric optimization and enjoys a closed form solution.
 
+
+===================================================
+
+TODO:
+
 ## Example: Validation and Estimation in Epidemiological Perspective
 
-EIV Rmd file goes here
-
+EIV.Rmd file goes here
 
 
 ## Computational Challenges
 
-why gls is easy to compute and to parellelize
-
-Although both formulas superficially require large matrices to be inverted, the calculations can be organized to allow individual rows and columns of both to be computed without the need for matrix inversion. In practice, a few representative rows are usually all that is needed, for it is impractical to completely analyze very large matrices, anyway.
-
-
+- why gls is easy to compute and to parellelize
+- covariance matrix: the computational burden increases with sample size. small number of nonzero elements - reduce the computational burden considerably.
 
 ### Sparse Representations
 
 ### Memory Efficiency
 
 ### Parallel Computing
+
+[Kathryn, Wang, Armstrong][Parallelizing MCMC for Bayesian spatiotemporal geostatistical models]
+
+===================================================
+
+
+
 
 
 
