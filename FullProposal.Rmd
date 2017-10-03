@@ -336,13 +336,13 @@ $$\Sigma_{s}(\theta) =
 \quad \text{and} \quad 
 \Sigma_{u}(\theta) = 
     \begin{bmatrix}
-        \theta_1^2      & \theta_{1,2}  & \dots     & \theta_{1,n}  \\
-        \theta_{2,1}    & \theta_2^2    &           &               \\
+        \sigma_1^2      & \sigma_{1,2}  & \dots     & \sigma_{1,n}  \\
+        \sigma_{2,1}    & \sigma_2^2    &           &               \\
         \vdots          &               & \ddots    & \vdots        \\
-        \theta_{n,1}    &               & \dots     & \theta_n^2
+        \sigma_{n,1}    &               & \dots     & \sigma_n^2
     \end{bmatrix},$$
 
-where $\Sigma_{s}(\theta)$ is the variance-scalled identity matrix, somtimes called *spherical error variance* matrix [@hayashi2000econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter. $\Sigma_{u}(\theta)$ on the other hand, is the most general model, called the *unstructured covariance matrix* and specifies no patterns. Unfortunately, the use of unstructured covariance matrix is not feasible in most cases since it requires fitting $N(N+1)/2$ parameters. This requires high number of measurements for every time-space interaction unit to achieve nonsingularity, which most datasets do not support.
+where $\Sigma_{s}(\theta)$ is the variance-scalled identity matrix, somtimes called *spherical error variance* matrix [@hayashi2000econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter: $\theta = \sigma$. $\Sigma_{u}(\theta)$ on the other hand, is the most general model, called the *unstructured covariance matrix* and specifies no patterns. Unfortunately, the use of unstructured covariance matrix is not feasible in most cases since it requires fitting $N(N+1)/2$ parameters: $\theta = (\sigma_1, \sigma_{1,2},...,\sigma_n)$. This requires high number of measurements for every time-space interaction unit to achieve nonsingularity, which most datasets do not support.
 
 We would like to examine covariance models at an increasing complexity. Firstly, we will separately discuss temporal and spatial modeling ($\S$\ref{temporalcov} and $\S$\ref{spatialcov}, respectively). Further, we will examine a space-time integrated model ($\S$\ref{sptemcov}). We stick to a spatio-temporal framework in which $i\in 1,...,S$ indicates a spatial unit and $j\in 1,...,T$ indicates a time unit. 
 
