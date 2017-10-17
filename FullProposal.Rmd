@@ -1,16 +1,16 @@
 ---
-title: "Ph.D. Research Proposal Geographical Applications of modern statistical learning algorithms"
+title: Ph.D. Research Proposal Geographical Applications of modern statistical learning
+  algorithms
 author: "Ron Sarafian"
+fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     number_sections: yes
   html_document:
     df_print: paged
+header-includes: \AtBeginDocument{\let\maketitle\relax} \usepackage[titletoc]{appendix}
 bibliography: bib.bib
-fontsize: 12pt
-header-includes:
-    \AtBeginDocument{\let\maketitle\relax}
-    \usepackage[titletoc]{appendix}
 ---
 
 ```{r setup, include=FALSE}
