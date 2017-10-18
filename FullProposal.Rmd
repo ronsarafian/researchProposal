@@ -199,9 +199,9 @@ Over the years, many approaches have been developed in order to model structured
 
 Another suitable approach for modeling complex dependency structures is the *Generalized Least Squares* (GLS). The GLS (see @kariya2004generalized for a comprehensive review) is a linear regression model which uses a variance-covariance matrix of the error terms to efficiently estimate model's parameters in the presence of dependency. The error covariance matrix can be estimated when it is unknown. Since it is a linear model, the GLS has some nice properties as we will discuss later. Altought GLS based models have been known in the statistical literature for decades, their application in geographical and environmental studies has been very limited so far.
 
-In the following we discuss some of the features of the Mixed model ($\S$\ref{mixedm}) and the GLS ($\S$\ref{glsm}), including their estimation procedures ($\S$\ref{estimation}). As we shall see, these two approaches eventually deal with the same challenge: To characterize the observations dependency structure. More specifically, they ask: "how does the residuals variance-covariance matrix is looks like?". We state that, as far as regressions are concerened, the difference between models is the definition of the dependence structure through the covariance matrix of the residuals terms.
+In the following we discuss some of the features of the Mixed Model ($\S$\ref{mixedm}) and the GLS ($\S$\ref{glsm}), including their estimation procedures ($\S$\ref{estimation}). As we shall see, these two approaches eventually deal with the same challenge: To characterize the observations dependency structure. More specifically, they ask: "how does the residuals variance-covariance matrix is looks like?". We state that, as far as regressions are concerened, the difference between models is the definition of the dependence structure through the covariance matrix of the residuals terms.
 
-In the GLS model, parameters are estimated using a prespecified covariance matrix of the error terms. Thus, it can be thought as a general approach to model complex structured data, since any covariance matrix can be used. Therefore, the mixed model can be considered as one of GLS's special cases. 
+In the GLS model, parameters are estimated using a prespecified covariance matrix of the error terms. Thus, it can be thought as a general approach to model complex structured data, since any covariance matrix can be used. Therefore, the Mixed Model can be considered as one of GLS's special cases. 
 
 Since it is the errors covariance matrix that practically determine the model, we will make an effort to explore its modeling ($\S$\ref{matrix}). The estimation of this matrix is undoubtedly a gentle art, as the dependence structure consists of temporal and spatial correlations which their patterns are unknown.
 
@@ -307,7 +307,7 @@ The GLS can be considered as an estimation method that de-correlate the scale of
 ### The Errors Variance-covariance Matrix
 \label{matrix}
 
-Whether it's a Mixed model, AR, or SEM, it is the covariance matrix that essentially captures the errors dependency. The decision regarding the errors covariance modeling is the researcher's statement about the data generating process.
+Whether it's a Mixed Model, AR, or SEM, it is the covariance matrix that essentially captures the errors dependency. The decision regarding the errors covariance modeling is the researcher's statement about the data generating process.
 
 Here we review several models specifications which may be applied. We focus on *parameterized* covariance matrices, where all the components of the covariance matrix are a function of $q \in \{ 1,...,N(N+1)/2 \}$ parameters, where $N$ is the number of error terms. As an initial step, our concentration will be in *stationary covariance functions* (stationary in both space and time). Following @cressie2015statistics notation, $C$ is a stationary spatio-temporal covariance function on $\mathbb{R}^d \times \mathbb{R}$ (where $d$ is the spatial dimension) if it can be written as:
 
@@ -495,7 +495,7 @@ The multivariate normal distribution of $y_j$ can then be writen as:
 y_j \sim \mathcal{N}(X_j\beta, \sigma^2(I+Z_jDZ_j')),
 \end{equation}
 
-and the log likelihood function for the linear mixed model is given by:
+and the log likelihood function for the linear Mixed Model is given by:
 
 \begin{multline} \label{eq:ll1}
 l(\beta,\sigma^2, D) =  -\frac{T}{2}\ln{2\pi} \\
