@@ -483,7 +483,7 @@ So far we've discussed the formulation of different predictive models. However, 
 
 #### Estimation of the Mixed Model
 
-Back to the simple LME model presented in (\ref{eq:mixedm}). Remember that $j$ now represent a cluster (possibly a day cluster) and $s_j$ is the number of observations in it (possibly number of spatial replications per day). The mixed effect model assume normal disttribution of the error, specificaly:
+Back to the simple LME model presented in (\ref{eq:mixedm}). Remember that $j$ now represent a cluster (e.g., a day cluster) and $s_j$ is the number of observations in it (e.g., the number of spatial replications per day). The mixed effect model assume normal disttribution of the error, specificaly:
 
 \begin{equation}
 \varepsilon_j \sim \mathcal{N}(0,\sigma^2 I_{s_j}) \qquad b_j \sim \mathcal{N}(0,\sigma^2D).
