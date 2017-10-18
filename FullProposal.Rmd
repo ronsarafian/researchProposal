@@ -4,9 +4,9 @@ title: Ph.D. Research Proposal Geographical Applications of modern statistical l
 author: "Ron Sarafian"
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     number_sections: yes
+  word_document: default
   html_document:
     df_print: paged
 header-includes: \AtBeginDocument{\let\maketitle\relax} \usepackage[titletoc]{appendix}
