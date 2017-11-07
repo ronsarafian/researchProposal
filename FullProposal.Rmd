@@ -37,14 +37,13 @@ knitr::opts_chunk$set(echo = TRUE)
 			By: Ron Sarafian
     \end{center}
     \vfill
-    \large
-    \begin{tabular}{b{13cm} r}
-      Advisor: Dr. Johnathan Rosenblatt & \underline{\hspace{2.5cm}} \\
-      Advisor: Prof. Itai Kloog & \underline{\hspace{2.5cm}} \\
-      Advisor: Prof. Israel Parmet & \underline{\hspace{2.5cm}} \\
-      & \\
+    \normalsize
+    \begin{tabular}{b{11cm} r}
+      Advisor: Dr. Johnathan Rosenblatt & \underline{\hspace{3cm}} \\ \\
+      Advisor: Prof. Itai Kloog & \underline{\hspace{3cm}} \\ \\
+      Advisor: Prof. Israel Parmet & \underline{\hspace{3cm}} \\ \\
       Chairman of Ph.D. students committee (IEM Department): 
-        Prof. Joseph Kreimer & \underline{\hspace{2.5cm}} \\
+        Prof. Joseph Kreimer & \underline{\hspace{3cm}} \\
     \end{tabular}
 \end{titlepage}
 
