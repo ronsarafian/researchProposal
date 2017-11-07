@@ -9,6 +9,7 @@ output:
     df_print: paged
 header-includes:
   - \AtBeginDocument{\let\maketitle\relax}
+  - \usepackage{array}
 bibliography: bib.bib
 ---
 
@@ -37,15 +38,14 @@ knitr::opts_chunk$set(echo = TRUE)
     \end{center}
     \vfill
     \large
-    Advisor: Dr. Johnathan Rosenblatt
-    \hfill \underline{\hspace{3cm}} \\
-    Advisor: Prof. Itai Kloog
-    \hfill \underline{\hspace{3cm}} \\
-    Advisor: Prof. Israel Parmet
-    \hfill \underline{\hspace{3cm}} \\
-    \\
-    Chairman of Ph.D. students committee: Prof. Joseph Kreimer
-    \hfill \underline{\hspace{3cm}} \\
+    \begin{tabular}{b{13cm} r}
+      Advisor: Dr. Johnathan Rosenblatt & \underline{\hspace{2.5cm}} \\
+      Advisor: Prof. Itai Kloog & \underline{\hspace{2.5cm}} \\
+      Advisor: Prof. Israel Parmet & \underline{\hspace{2.5cm}} \\
+      & \\
+      Chairman of Ph.D. students committee (IEM Department): 
+        Prof. Joseph Kreimer & \underline{\hspace{2.5cm}} \\
+    \end{tabular}
 \end{titlepage}
 
 
