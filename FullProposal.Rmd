@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE)
     \large
     Advisor: Dr. Johnathan Rosenblatt
     \hfill \underline{\hspace{3cm}} \\
-    Advisor: Prof. Itali Kloog
+    Advisor: Prof. Itai Kloog
     \hfill \underline{\hspace{3cm}} \\
     Advisor: Prof. Israel Parmet
     \hfill \underline{\hspace{3cm}} \\
