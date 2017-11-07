@@ -27,17 +27,25 @@ knitr::opts_chunk$set(echo = TRUE)
 			\large
 			Ph.D. Research Proposal \\
 			\vspace{1cm}
-			\Large
-			Geographical Applications of Modern Statistical Learning Algorithms \\
+			\Large\textbf{
+			Geographical Applications of Modern Statistical Learning Algorithms} \\
+			\vspace{1cm}
+			\includegraphics{heb_title} \\
 			\vspace{1cm}
 			\large
 			By: Ron Sarafian
     \end{center}
     \vfill
     \large
-    Advisor: Dr. Johnathan Rosenblatt \\
-    Advisor: Prof. Itali Kloog \\
-    Advisor: Prof. Israel Parmet \\
+    Advisor: Dr. Johnathan Rosenblatt
+    \hfill \underline{\hspace{3cm}} \\
+    Advisor: Prof. Itali Kloog
+    \hfill \underline{\hspace{3cm}} \\
+    Advisor: Prof. Israel Parmet
+    \hfill \underline{\hspace{3cm}} \\
+    \\
+    Chairman of Ph.D. students committee: Prof. Joseph Kreimer
+    \hfill \underline{\hspace{3cm}} \\
 \end{titlepage}
 
 
@@ -132,7 +140,6 @@ One option is to set the weights matrix to be the identity matrix: $\textbf{W} =
 \mathcal{L}_I = \big(y-\hat{f}(x)\big)' I \big(y-\hat{f}(x)\big).
 \end{equation}
 
-$$ \Theta $$
 Another option is to set the weights matrix to be the *precision matrix*, i.e. the inverse of the variance-covariane matrix: $\textbf{W} = \Sigma^{-1}$. In this case, the loss function can be thought as the squared *Mahalanobis norm* of the residuals vector. We call this loss function the *precisioned quadratic loss function*:
 
 \begin{equation} 
@@ -195,7 +202,7 @@ Note that the approaches described are appropriate only when the dependence stru
 ## Dependence Modeling
 \label{dependence}
 
-Geographical and environmental data generally show both spatial and temporal observations dependency. Standard regression techniques which ignore this dependency structure lead to unefficient estimates and bad predictions. Also, prediction errors may be spatially and temporally correlated [@anselin1998spatial], so that epidemiological studies that use predictions as covariates would suffer from measurement errors, resulting in biased results and erroneous conclusions (see for instance @gryparis2008measurement).
+Geographical and environmental data generally show both spatial and temporal observations dependency. Standard regression techniques which ignore this dependency structure lead to inefficient estimates and bad predictions. Also, prediction errors may be spatially and temporally correlated [@anselin1998spatial], so that epidemiological studies that use predictions as covariates would suffer from measurement errors, resulting in biased results and erroneous conclusions (see for instance @gryparis2008measurement).
 
 Over the years, many approaches have been developed in order to model structured data. Appendix \ref{modeling_SB} provides a brief historical overview from temporal to spatio-temporal modeling approaches. In the environmental exposure assessment studies, Mixed Models (@henderson1959estimation; @robinson1991blup) are probably the most prevalent statistical framework for spatio-temporal data, particularly those analyzing satellite based data. Mixed Models cope with clustered data by distinguishing between two sources of variation: between clusters, and within clusters.
 
@@ -215,7 +222,7 @@ Whereas the purpose of the model is predication rather than inference, we might 
 
 Mixed Models, sometimes referred as Hierarchical models, are a class of statistical models suited for the analysis of structured data. Mixed Models are particularly useful when observing repeated measurements of the same statistical units. Mixed Models are widely used in environmental studies due to their ability to genuinely combine the data by introducing multilevel random effects that easily specifying complex correlation structures. In theses studies levels are usually time periods, spatial areas, or their interactions.
 
-For each level, the mixed effect model defines clusters. In time level, typical clusters are days or hours, and in spatial level, they might be grid cells. The model assumes that observations between clusters are independent, while observations within cluster are dependent since they belong to the same subpopulation. For instance, when days are the only clusters in a PM spatio-temporal dataset, PM measurements for a specific day of all geographic units are dependent, as they are assumed to be drawn from the same subpopulation. That is to say, that every day is unique in its distribution of PM measurements across different geographic locations. This cluster-specific uniqueness is reflected in an estimated posteriori coefficient and referred  as *random effects*. Other model coefficients are fixed across clusters (usually referred as *fixed effects*) and have the same meaning as in standard regression models.
+For each level, the mixed effect model defines clusters. In time level, typical clusters are days or hours, and in spatial level, they might be grid cells. The model assumes that observations between clusters are independent, while observations within cluster are dependent since they belong to the same sub-population. For instance, when days are the only clusters in a PM spatio-temporal dataset, PM measurements for a specific day of all geographic units are dependent, as they are assumed to be drawn from the same sub population. That is to say, that every day is unique in its distribution of PM measurements across different geographic locations. This cluster-specific uniqueness is reflected in an estimated posteriori coefficient and referred  as *random effects*. Other model coefficients are fixed across clusters (usually referred as *fixed effects*) and have the same meaning as in standard regression models.
 
 A very common model in the exposure assessment literature is the *Linear Mixed Effect* (LME) model that was originally developed by @laird1982random. It can be formulated as:
 
@@ -336,7 +343,7 @@ $$\Sigma_{s}(\theta) =
         \sigma_{n,1}    &               & \dots     & \sigma_n^2
     \end{bmatrix}.$$
 
-$\Sigma_{s}(\theta)$ is the variance-scalled identity matrix, sometimes called *spherical error variance* matrix [@hayashi2000econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter: $\theta = \sigma$. $\Sigma_{u}(\theta)$ on the other hand, is the most general model, called the *unstructured covariance matrix* and specifies no patterns. Unfortunately, the use of unstructured covariance matrix is not feasible in most cases since it requires fitting $N(N+1)/2$ parameters: $\theta = (\sigma_1, \sigma_{1,2},...,\sigma_n)$. This requires high number of measurements for every time-space interaction unit to achieve nonsingularity, which most datasets do not support.
+$\Sigma_{s}(\theta)$ is the variance-scaled identity matrix, sometimes called *spherical error variance* matrix [@hayashi2000econometrics]. This structure assumes *homoscedasticity* and no autocorrelation, and requires estimation of only one parameter: $\theta = \sigma$. $\Sigma_{u}(\theta)$ on the other hand, is the most general model, called the *unstructured covariance matrix* and specifies no patterns. Unfortunately, the use of unstructured covariance matrix is not feasible in most cases since it requires fitting $N(N+1)/2$ parameters: $\theta = (\sigma_1, \sigma_{1,2},...,\sigma_n)$. This requires high number of measurements for every time-space interaction unit to achieve nonsingularity, which most datasets do not support.
 
 We would like to examine covariance models at an increasing complexity. Firstly, we will separately discuss temporal and spatial modeling (Sec. \ref{temporalcov} and Sec. \ref{spatialcov}, respectively). Further, we will examine a space-time integrated model (Sec. \ref{sptemcov}). We stick to a spatio-temporal framework in which $i\in 1,...,S$ indicates a spatial unit and $j\in 1,...,T$ indicates a time unit. 
 
@@ -395,7 +402,7 @@ The Toeplitz covariance matrix requires the estimation of $T$ parameters.
 There are several approaches discussed in the literature regarding the covariance model in spatial correlated data, each implies a different assumption about the spatial pattern. One approach, which is particularly common in econometric studies, is to model the errors generating process through a *Spatial Weight Matrix* - $W$ (first introduced by @ord1975estimation, but see also @elhorst2014spatial). This can be described as follows: Consider the model in (\ref{eq:m1}), but now with different assumption regarding to the $i-j$th element of $\varepsilon$: 
 
 \begin{equation}
-\varepsilon_{ij}=  \lambda \sum_{k=1}^S W_{ik}\varepsilon_{kj} + \nu_{ij}
+\varepsilon_{ij}=  \lambda \sum_{k=1}^S W_{ik}\varepsilon_{kj} + \nu_{ij},
 \end{equation}
 
 where $W_{ik}$ is the $i-k$th element in the $S \times S$ weight matrix $W$, and $\nu_{ij}$ is an IID white noise with $\mathbb{E}(\nu_{ij}) = 0$ and $\mathbb{V}\text{ar}(\nu_{ij}) = \sigma_{\nu}^2$. Note that this scheme ignore temporal effects by assuming the same structure for each time unit $j$. $\dot{\varepsilon}_{ij} = \sum_{k=1}^S w_{ik}\varepsilon_{kj}$ is called the *spatial lag*, since it represent a linear combination of (spatially) neighboring errors values. $\lambda$ is the correlation between the errors and their spatial lags. In matrix notation, for each time unit $j$, the $S \times 1$ vector $\varepsilon_j$ can be represented as:
@@ -558,7 +565,7 @@ Reducing the variance of the predicted values can be done by *Regularization*, w
 
 Although regularization in regression models have received considerable attention over the past years, literature on regularized LME models is somewhat scarce. The challenge in regularization of Mixed Models is to properly select random effects together with the fixed effects. This challenge stems from the fact that as long as the random effects are not determined, its covariance matrix is unknown. One option is to perform selection in separate stages, but it may lead to different regularization solutions depending on the order of the stages. 
 
-Recently, several procedures have been proposed to identify both the random and fixed effects. @bondell2010joint propose a simultaneous selection of the fixed and random effects in an LME model, using a modified Cholesky decomposition. Their regularizations method is based on a penalized joint log-likelihood with an adaptive penalty (*adaptive Lasso*). @fan2012variable propose to use a proxy matrix in the penalized profile likelihood to overcome the difficulty of unknown covariance matrix of the random effects. One drawback of these kind of methods is that they usually involve complex numerical optimization, therefore are computational intensity in relation to classical regularization methods such as Ridge regression.
+Recently, several procedures have been proposed to identify both the random and fixed effects. @bondell2010joint propose a simultaneous selection of the fixed and random effects in an LME model, using a modified Cholesky decomposition. Their regularization method is based on a penalized joint log-likelihood with an adaptive penalty (*adaptive Lasso*). @fan2012variable propose to use a proxy matrix in the penalized profile likelihood to overcome the difficulty of unknown covariance matrix of the random effects. One drawback of these kind of methods is that they usually involve complex numerical optimization, therefore are computational intensity in relation to classical regularization methods such as Ridge regression.
 
 
 #### Regularization in GLS
@@ -669,9 +676,9 @@ Some contribution to blocking approaches comes also from the bootstrap practice.
 ## Dependence Modeling of Structured Data
 \label{modeling_SB}
 
-In the last decades there has been an explosion of research in dependence data modeling. *Logitudial* modeling is perhaps the most familiar. It mostly focuses on the dependence among observations over time, and is commonly used in many fields such as biology, economics and more. Several modeling approaches for longitudinal data (also known as Panel Data in the econometric literature) have been proposed. A very common statistical approach is the use of parameterized covariance models. These models assume an underlying structure of stochastic process, defined by small number of parameters. Such structures are *Autoregressive* (AR), *Moving Average* (MA), and their integration (ARIMA). A comprehensive longitudinal modeling review is given by @weiss2005modeling.
+In the last decades there has been an explosion of research in dependence data modeling. *Logitudial* modeling is perhaps the most familiar. It mostly focuses on the dependence among observations over time, and is commonly used in many fields such as biology, economics and more. Several modeling approaches for longitudinal data (also known as Panel Data in the econometric literature) have been proposed. A very common statistical approach is the use of parameterized covariance models. These models assume an underlying structure of stochastic process, defined by small number of parameters. Such structures are *Autoregressive* (AR), *Moving Average* (MA), their integration (ARIMA), and more. A comprehensive longitudinal modeling review is given by @weiss2005modeling.
 
-Spatial statistics deals with more complex dependency structure, where data represent observations that are associated with points or regions. According to the first law of geography [@tobler1970computer], samples in geographical space tend to be more similar, resulting in spatial correlation. Modeling Spatial correlation is not simple. It is definitely not a straightforward extension of time series into two dimensions. @cressie1993statistics introduce the *Conditionally Specified Gaussian* model that use the spatial locations of samples to model the probability distribution of the errors under Gaussian assumption. The spatial econometrics literature uses the so-called Spatial Weights Matrix $W$ to denote variables lagged in space. $W$ describes the spatial arrangement of the geographical units and can be assumed or estimated. In his seminal book, @anselin1998spatial presents several estimation methods for linear regression model with spatially dependent error terms from an econometric perspective. @lesage2008introduction called this model *Spatial Error Model* (SEM) and considered it as a special case of the more general *Spatial Durbin Model* (SDM). Another approach that has recently proven to be effective for spatial (and spatio-temporal) data is *Bayesian Hierarchical Modeling* [@banerjee2014hierarchical]. This approach handles complex relationships such as multi-level data by estimating the parameters of the posterior distribution using Bayesian methods. 
+Spatial statistics deals with more complex dependency structure, where data represent observations that are associated with points or regions. According to the first law of geography [@tobler1970computer], samples in geographical space tend to be more similar, resulting in spatial correlation. Modeling Spatial correlation is not simple. It is definitely not a straightforward extension of time series into two dimensions. @cressie1993statistics introduce the *Conditionally Specified Gaussian* model that use the spatial locations of samples to model the probability distribution of the errors under Gaussian assumption. The spatial econometric literature uses the so-called Spatial Weights Matrix $W$ to denote variables lagged in space. $W$ describes the spatial arrangement of the geographical units and can be assumed or estimated. In his seminal book, @anselin1998spatial presents several estimation methods for linear regression model with spatially dependent error terms from an econometric perspective. @lesage2008introduction called this model *Spatial Error Model* (SEM) and considered it as a special case of the more general *Spatial Durbin Model* (SDM). Another approach that has recently proven to be effective for spatial (and spatio-temporal) data is *Bayesian Hierarchical Modeling* [@banerjee2014hierarchical]. This approach handles complex relationships such as multi-level data by estimating the parameters of the posterior distribution using Bayesian methods. 
 
 Spatio-temporal data enable the researcher to take advantage of time-space interactions, thus to provide more accurate predictions in a higher resolution. However, the analysis of spatio-temporal data might be quite complicated since both spatial and temporal dependencies should be accounted. It is an emerging research field and modeling approaches are still developing. Common approaches to deal with spatio-temporal data is by modeling the dependency structure through the covariance function. @cressie2015statistics provide a comprehensive review of spatio-temporal statistical modeling approaches. See also @banerjee2014hierarchical for more Bayesian Hierarchical approaches. Econometric literature refer spatio-temporal datasets as *Dynamic Spatial Panel Data*. Several approaches have been developed in recent years, including *Dynamic SDM* and ML approaches. A detailed econometric review is given by @elhorst2014spatial.
 
